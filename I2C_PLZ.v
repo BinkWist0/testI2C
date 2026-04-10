@@ -199,12 +199,12 @@ module I2C_PLZ(
     assign GPIO[0] = sda_drive_low ? 1'b0 : 1'bz;
     assign GPIO[1] = scl_drive_low ? 1'b0 : 1'bz;
 
-    // diagnostics for analyzer
+    // diagnostics for analyzer (user probes GPIO2/GPIO3/GPIO4)
     assign GPIO[2] = sda_in;          // actual SDA level seen by FPGA
     assign GPIO[3] = scl_in;          // actual SCL level seen by FPGA
-    assign GPIO[4] = sda_drive_low;   // FPGA intent: drive SDA low
-    assign GPIO[5] = scl_drive_low;   // FPGA intent: drive SCL low
-    assign GPIO[6] = busy_tx;
+    assign GPIO[4] = busy_tx;         // transaction window marker
+    assign GPIO[5] = sda_drive_low;   // FPGA intent: drive SDA low
+    assign GPIO[6] = scl_drive_low;   // FPGA intent: drive SCL low
     assign GPIO[7] = ok_tx;
     assign GPIO[15:8] = dbg_state;
     genvar i;
